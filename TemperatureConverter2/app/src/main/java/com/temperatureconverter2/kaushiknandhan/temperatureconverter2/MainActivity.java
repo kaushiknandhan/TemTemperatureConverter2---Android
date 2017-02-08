@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Listview logic
-        String[] wkTemps = new String[] { "1", "-10", "0", "30", "10"};
+        String[] wkTemps = new String[] { "Saturday 51F", "Sunday 45F", "Monday 45F", "Tuesday 43F", "Wednesday 39F"};
 
         lv=(ListView) findViewById(R.id.listView);
         @SuppressWarnings({ "unchecked", "rawtypes" })
