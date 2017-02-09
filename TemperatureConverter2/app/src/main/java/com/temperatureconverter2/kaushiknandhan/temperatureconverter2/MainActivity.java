@@ -18,7 +18,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     SeekBar seekBar;  //declare seekbar object
-    TextView textView;
+    TextView textView, textView2;
     //declare member variables for SeekBar
     int discrete=0;
     int start=50;
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                                                                 checkBox.setVisibility(View.GONE);
                                                                 seekBar.setVisibility(View.GONE);
                                                                 textView.setVisibility(View.GONE);
+                                                                textView2.setVisibility(View.GONE);
 
                                                                 stub.setVisibility(View.VISIBLE);
                                                             }
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         //seekbar logic
 
         textView = (TextView) findViewById(R.id.textview);
+        textView2 = (TextView) findViewById(R.id.textView2);
         textView.setText("     Celsius at 0 degrees"); //set default view
         seekBar=(SeekBar) findViewById(R.id.seekbar);
         seekBar.setProgress(start_position);
@@ -73,12 +75,15 @@ public class MainActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 // TODO Auto-generated method stub
                 if(temp==0)  //for initial view result
-                    Toast.makeText(getBaseContext(), "Fahrenheit result 32 degrees",
-                            Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getBaseContext(), "Fahrenheit result 32 degrees",
+//                            Toast.LENGTH_SHORT).show();
+                    textView2.setText("Fahrenheit result 32 degrees"); // prints the data to the textview
+
                 else
-                    Toast.makeText(getBaseContext(), "Fahrenheit result "
-                                    +String.valueOf(discrete) + " degrees",
-                            Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getBaseContext(), "Fahrenheit result "
+//                                    +String.valueOf(discrete) + " degrees",
+//                            Toast.LENGTH_SHORT).show();
+                    textView2.setText("Fahrenheit result "+String.valueOf(discrete) + " degrees"); // prints the data to the textview
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -97,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Listview logic
-        String[] wkTemps = new String[] { "Saturday 51F", "Sunday 45F", "Monday 45F", "Tuesday 43F", "Wednesday 39F"};
+        String[] wkTemps = new String[] { "Saturday 51"+(char) 0x00B0 +"F", "Sunday 45"+(char) 0x00B0 +"F", "Monday 45"+(char) 0x00B0 +"F", "Tuesday 43"+(char) 0x00B0 +"F", "Wednesday 39"+(char) 0x00B0 +"F"};
 
         lv=(ListView) findViewById(R.id.listView);
         @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -114,4 +119,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     }//end onCreate method
+
+    public void backButton(View view) {
+        /**
+         * Clicking the button makes the previous view elements visible and making the viewStub invisible.
+         */
+        checkBox.setChecked(false);
+        checkBox.setVisibility(View.VISIBLE);
+        seekBar.setVisibility(View.VISIBLE);
+        textView.setVisibility(View.VISIBLE);
+        textView2.setVisibility(View.VISIBLE);
+        stub.setVisibility(View.GONE);
+    }
 }
